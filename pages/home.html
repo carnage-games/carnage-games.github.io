@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CARNAGE</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="nav-logo">CARNAGE</div>
+                <div class="nav-subtitle">Command Center</div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="home.html" class="nav-link active" data-page="home">
+                    <div class="nav-icon home-icon"></div>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="games.html" class="nav-link" data-page="games">
+                    <div class="nav-icon games-icon"></div>
+                    <span>Games</span>
+                </a></li>
+                <li><a href="music.html" class="nav-link" data-page="music">
+                    <div class="nav-icon music-icon"></div>
+                    <span>Music</span>
+                </a></li>
+                <li><a href="bookmarklets.html" class="nav-link" data-page="bookmarklets">
+                    <div class="nav-icon tools-icon"></div>
+                    <span>Bookmarklets</span>
+                </a></li>
+                <li><a href="system.html" class="nav-link" data-page="system">
+                    <div class="nav-icon system-icon"></div>
+                    <span>System</span>
+                </a></li>
+                <li><a href="settings.html" class="nav-link" data-page="settings">
+                    <div class="nav-icon settings-icon"></div>
+                    <span>Settings</span>
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1 class="breadcrumb" id="current-page">Dashboard</h1>
+                <div class="header-actions">
+                    <button class="action-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+                        <div class="fullscreen-icon"></div>
+                    </button>
+                    <button class="action-btn" onclick="logout()" title="Logout">
+                        <div class="logout-icon"></div>
+                    </button>
+                </div>
+            </header>
+
+            <div class="page-container">
+                <div class="page-content">
+                    <h1 class="page-title">CARNAGE DASHBOARD</h1>
+                    <p class="page-subtitle">Welcome to your command center</p>
+                    
+                    <!-- Quick Stats Grid -->
+                    <div class="grid grid-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <div style="width: 16px; height: 12px; border: 2px solid white; border-radius: 3px;"></div>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">System Status</h3>
+                                    <p class="card-description">All systems operational</p>
+                                </div>
+                            </div>
+                            <div class="status-indicator status-online">
+                                <span>●</span> Online
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <div style="width: 16px; height: 12px; border: 2px solid white; border-radius: 3px;"></div>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Active Tools</h3>
+                                    <p class="card-description">Ready for deployment</p>
+                                </div>
+                            </div>
+                            <div style="font-size: 2rem; font-weight: 700; color: var(--primary-accent);">12</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <div style="width: 18px; height: 18px; background: white; border-radius: 50%;"></div>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Performance</h3>
+                                    <p class="card-description">System efficiency</p>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 87%;"></div>
+                            </div>
+                            <div style="color: var(--success); font-weight: 600;">87% Optimal</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 3px;"></div>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Security</h3>
+                                    <p class="card-description">Threat level</p>
+                                </div>
+                            </div>
+                            <div class="badge badge-success">SECURE</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Dashboard Content -->
+                    <div class="grid grid-2">
+                        <!-- Quick Actions -->
+                        <div class="card fade-in">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <div style="width: 18px; height: 3px; background: white; transform: rotate(45deg);"></div>
+                                    <div style="width: 18px; height: 3px; background: white; transform: rotate(-45deg); margin-top: -3px;"></div>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Quick Actions</h3>
+                                    <p class="card-description">Frequently used tools</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; gap: 1rem;">
+                                <a href="games.html" class="btn btn-primary">
+                                    🎮 Launch Games
+                                </a>
+                                <a href="music.html" class="btn btn-secondary">
+                                    🎵 Music Player
+                                </a>
+                                <a href="bookmarklets.html" class="btn btn-secondary">
+                                    🛠️ Developer Tools
+                                </a>
+                                <a href="system.html" class="btn btn-secondary">
+                                    📊 System Monitor
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activity -->
+                        <div class="card fade-in">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 50%;"></div>
+                                    <div style="width: 8px; height: 8px; background: white; border-radius: 50%; margin-top: -12px; margin-left: 4px;"></div>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Recent Activity</h3>
+                                    <p class="card-description">Latest system events</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px; border-left: 3px solid var(--success);">
+                                    <span>System initialized successfully</span>
+                                    <span style="color: var(--text-muted); font-size: 0.8rem;">2 min ago</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px; border-left: 3px solid var(--info);">
+                                    <span>User authentication verified</span>
+                                    <span style="color: var(--text-muted); font-size: 0.8rem;">5 min ago</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px; border-left: 3px solid var(--warning);">
+                                    <span>Performance optimization applied</span>
+                                    <span style="color: var(--text-muted); font-size: 0.8rem;">12 min ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Overview -->
+                    <div class="card fade-in mt-4">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <div style="width: 18px; height: 14px; border: 2px solid white; border-radius: 3px;"></div>
+                                <div style="width: 10px; height: 3px; background: white; margin-top: 2px; margin-left: 4px;"></div>
+                            </div>
+                            <div>
+                                <h3 class="card-title">System Overview</h3>
+                                <p class="card-description">Real-time system metrics</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-3">
+                            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 107, 53, 0.05); border-radius: 12px; border: 1px solid var(--border-color);">
+                                <div style="font-size: 2.5rem; color: var(--primary-accent); font-weight: 700; margin-bottom: 0.5rem;">98%</div>
+                                <div style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">CPU Usage</div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-fill" style="width: 98%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 107, 53, 0.05); border-radius: 12px; border: 1px solid var(--border-color);">
+                                <div style="font-size: 2.5rem; color: var(--success); font-weight: 700; margin-bottom: 0.5rem;">64%</div>
+                                <div style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Memory</div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-fill" style="width: 64%; background: linear-gradient(90deg, var(--success), #059669);"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 107, 53, 0.05); border-radius: 12px; border: 1px solid var(--border-color);">
+                                <div style="font-size: 2.5rem; color: var(--info); font-weight: 700; margin-bottom: 0.5rem;">23%</div>
+                                <div style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Storage</div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-fill" style="width: 23%; background: linear-gradient(90deg, var(--info), #2563eb);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Welcome Message -->
+                    <div class="card fade-in mt-4" style="text-align: center; background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(243, 156, 18, 0.1));">
+                        <h2 style="color: var(--primary-accent); margin-bottom: 1rem; font-size: 1.8rem;">Welcome to CARNAGE</h2>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                            Your ultimate gaming and productivity portal. Access games, tools, system monitoring, and more from this centralized dashboard. 
+                            Everything you need is just a click away.
+                        </p>
+                        <div style="margin-top: 2rem;">
+                            <a href="games.html" class="btn btn-primary">
+                                Get Started 🚀
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
+

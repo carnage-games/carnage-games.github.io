@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarklets</title>
+    <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="page-header">
+            <h1 class="page-title">Developer Tools</h1>
+            <p class="page-subtitle">Powerful bookmarklets for web development</p>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon inspector-icon"></div>
+                <div class="tool-content">
+                    <h3>Element Inspector</h3>
+                    <p>Inspect and modify any element on the page in real-time</p>
+                    <div class="tool-features">
+                        <span class="feature">DOM Inspection</span>
+                        <span class="feature">Live Editing</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('inspector')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon password-icon"></div>
+                <div class="tool-content">
+                    <h3>Password Revealer</h3>
+                    <p>Reveal hidden passwords in password fields instantly</p>
+                    <div class="tool-features">
+                        <span class="feature">Password Fields</span>
+                        <span class="feature">Instant Reveal</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('password')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon edit-icon"></div>
+                <div class="tool-content">
+                    <h3>Page Editor</h3>
+                    <p>Make any webpage editable for testing and mockups</p>
+                    <div class="tool-features">
+                        <span class="feature">Content Editing</span>
+                        <span class="feature">Design Mode</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('editor')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon color-icon"></div>
+                <div class="tool-content">
+                    <h3>Color Picker</h3>
+                    <p>Extract colors from any element on the webpage</p>
+                    <div class="tool-features">
+                        <span class="feature">Color Extraction</span>
+                        <span class="feature">Hex Values</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('colorpicker')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon ruler-icon"></div>
+                <div class="tool-content">
+                    <h3>Page Ruler</h3>
+                    <p>Measure distances and dimensions on any webpage</p>
+                    <div class="tool-features">
+                        <span class="feature">Measurements</span>
+                        <span class="feature">Pixel Perfect</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('ruler')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon outline-icon"></div>
+                <div class="tool-content">
+                    <h3>Element Outliner</h3>
+                    <p>Add colored outlines to all elements for layout debugging</p>
+                    <div class="tool-features">
+                        <span class="feature">Layout Debug</span>
+                        <span class="feature">Visual Outline</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('outline')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon performance-icon"></div>
+                <div class="tool-content">
+                    <h3>Performance Monitor</h3>
+                    <p>Check page load times and performance metrics</p>
+                    <div class="tool-features">
+                        <span class="feature">Load Times</span>
+                        <span class="feature">Metrics</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('performance')">
+                    Get Code
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon responsive-icon"></div>
+                <div class="tool-content">
+                    <h3>Responsive Tester</h3>
+                    <p>Test responsive design with different screen sizes</p>
+                    <div class="tool-features">
+                        <span class="feature">Screen Sizes</span>
+                        <span class="feature">Mobile Test</span>
+                    </div>
+                </div>
+                <button class="tool-btn" onclick="showBookmarklet('responsive')">
+                    Get Code
+                </button>
+            </div>
+        </div>
+
+        <div class="instructions-section">
+            <h2 class="section-title">How to Use</h2>
+            <div class="instructions-grid">
+                <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Get the Code</h4>
+                        <p>Click "Get Code" on any tool to view the bookmarklet</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Copy & Save</h4>
+                        <p>Copy the code and save it as a bookmark in your browser</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Use Anywhere</h4>
+                        <p>Click the bookmark on any website to activate the tool</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bookmarklet Modal -->
+    <div id="bookmarklet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Bookmarklet Code</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="bookmarklet-code" readonly></textarea>
+                <div class="modal-actions">
+                    <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+                    <button class="test-btn" onclick="testBookmarklet()">Test Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+                    

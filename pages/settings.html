@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - CARNAGE</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <div class="page-content">
+        <h1 class="page-title">SETTINGS</h1>
+        <p class="page-subtitle">Customize your CARNAGE experience</p>
+        
+        <!-- Settings Categories -->
+        <div class="grid grid-4 mb-4">
+            <div class="card pulse" style="text-align: center; cursor: pointer;" onclick="showSettingsCategory('appearance')">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 0.5rem;">Appearance</h3>
+                <p style="color: var(--text-secondary);">Themes & colors</p>
+            </div>
+            
+            <div class="card" style="text-align: center; cursor: pointer;" onclick="showSettingsCategory('performance')">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 0.5rem;">Performance</h3>
+                <p style="color: var(--text-secondary);">Speed & optimization</p>
+            </div>
+            
+            <div class="card" style="text-align: center; cursor: pointer;" onclick="showSettingsCategory('privacy')">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 0.5rem;">Privacy</h3>
+                <p style="color: var(--text-secondary);">Security settings</p>
+            </div>
+            
+            <div class="card" style="text-align: center; cursor: pointer;" onclick="showSettingsCategory('advanced')">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚙️</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 0.5rem;">Advanced</h3>
+                <p style="color: var(--text-secondary);">Developer options</p>
+            </div>
+        </div>
+        
+        <!-- Appearance Settings -->
+        <div class="settings-category" id="appearance-settings">
+            <div class="grid grid-2 mb-4">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 16px; background: white; border-radius: 50%;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Theme Settings</h3>
+                            <p class="card-description">Customize the visual appearance</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Theme Selection -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Color Theme</label>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <div class="theme-option" data-theme="dark" onclick="selectTheme('dark')" style="padding: 1rem; border: 2px solid var(--primary-accent); border-radius: 12px; cursor: pointer; background: linear-gradient(135deg, #0a0a0f, #1a1a2e); text-align: center;">
+                                    <div style="margin-bottom: 0.5rem;">🌙</div>
+                                    <div style="font-weight: 600;">Dark Mode</div>
+                                </div>
+                                <div class="theme-option" data-theme="light" onclick="selectTheme('light')" style="padding: 1rem; border: 2px solid transparent; border-radius: 12px; cursor: pointer; background: linear-gradient(135deg, #f8fafc, #e2e8f0); color: #1a202c; text-align: center;">
+                                    <div style="margin-bottom: 0.5rem;">☀️</div>
+                                    <div style="font-weight: 600;">Light Mode</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Accent Color -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Accent Color</label>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <div class="color-option" data-color="orange" onclick="selectAccentColor('orange')" style="width: 40px; height: 40px; background: #ff6b35; border-radius: 50%; cursor: pointer; border: 3px solid var(--primary-accent); box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.3);"></div>
+                                <div class="color-option" data-color="blue" onclick="selectAccentColor('blue')" style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; cursor: pointer; border: 3px solid transparent;"></div>
+                                <div class="color-option" data-color="green" onclick="selectAccentColor('green')" style="width: 40px; height: 40px; background: #10b981; border-radius: 50%; cursor: pointer; border: 3px solid transparent;"></div>
+                                <div class="color-option" data-color="purple" onclick="selectAccentColor('purple')" style="width: 40px; height: 40px; background: #8b5cf6; border-radius: 50%; cursor: pointer; border: 3px solid transparent;"></div>
+                                <div class="color-option" data-color="red" onclick="selectAccentColor('red')" style="width: 40px; height: 40px; background: #ef4444; border-radius: 50%; cursor: pointer; border: 3px solid transparent;"></div>
+                                <div class="color-option" data-color="yellow" onclick="selectAccentColor('yellow')" style="width: 40px; height: 40px; background: #f59e0b; border-radius: 50%; cursor: pointer; border: 3px solid transparent;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Font Size */
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Font Size</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span style="font-size: 0.8rem;">A</span>
+                                <input type="range" min="12" max="20" value="16" style="flex: 1;" oninput="updateFontSize(this.value)">
+                                <span style="font-size: 1.2rem;">A</span>
+                                <span id="font-size-display" style="color: var(--primary-accent); font-weight: 600; min-width: 35px;">16px</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Animation Settings -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Animations</label>
+                            <div style="display: grid; gap: 0.75rem;">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleAnimations(this.checked)">
+                                    <span>Enable animations</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleTransitions(this.checked)">
+                                    <span>Smooth transitions</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleReducedMotion(this.checked)">
+                                    <span>Reduce motion (accessibility)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Background Settings -->
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 16px; background: linear-gradient(45deg, white, #ccc); border-radius: 3px;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Background Settings</h3>
+                            <p class="card-description">Customize background effects</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Background Type -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Background Type</label>
+                            <select style="width: 100%; padding: 0.75rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);" onchange="changeBackgroundType(this.value)">
+                                <option value="gradient">Gradient</option>
+                                <option value="particles">Particles</option>
+                                <option value="geometric">Geometric</option>
+                                <option value="solid">Solid Color</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Background Opacity -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Background Opacity</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span>0%</span>
+                                <input type="range" min="0" max="100" value="80" style="flex: 1;" oninput="updateBackgroundOpacity(this.value)">
+                                <span>100%</span>
+                                <span id="opacity-display" style="color: var(--primary-accent); font-weight: 600; min-width: 35px;">80%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Blur Effect -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Blur Effect</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span>None</span>
+                                <input type="range" min="0" max="20" value="10" style="flex: 1;" oninput="updateBlurEffect(this.value)">
+                                <span>Max</span>
+                                <span id="blur-display" style="color: var(--primary-accent); font-weight: 600; min-width: 35px;">10px</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom CSS -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Custom CSS</label>
+                            <textarea placeholder="Enter custom CSS rules..." style="width: 100%; height: 120px; padding: 1rem; background: rgba(255, 107, 53, 0.05); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: monospace; resize: vertical;" oninput="applyCustomCSS(this.value)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Settings -->
+        <div class="settings-category" id="performance-settings" style="display: none;">
+            <div class="grid grid-2 mb-4">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 16px; background: white; border-radius: 3px;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Performance Options</h3>
+                            <p class="card-description">Optimize system performance</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Hardware Acceleration -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleHardwareAcceleration(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Hardware Acceleration</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Use GPU for better performance</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Preload Resources -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="togglePreloadResources(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Preload Resources</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Load content in advance</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Cache Settings -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Cache Size (MB)</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span>50</span>
+                                <input type="range" min="50" max="500" value="200" style="flex: 1;" oninput="updateCacheSize(this.value)">
+                                <span>500</span>
+                                <span id="cache-display" style="color: var(--primary-accent); font-weight: 600; min-width: 50px;">200MB</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Auto-cleanup -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleAutoCleanup(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Auto Cleanup</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Automatically clear cache weekly</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Performance Mode -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Performance Mode</label>
+                            <select style="width: 100%; padding: 0.75rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);" onchange="changePerformanceMode(this.value)">
+                                <option value="balanced">Balanced</option>
+                                <option value="performance">High Performance</option>
+                                <option value="battery">Battery Saver</option>
+                                <option value="eco">Eco Mode</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Management -->
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 10px; border: 2px solid white; border-radius: 2px;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Memory Management</h3>
+                            <p class="card-description">Control memory usage</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Memory Limit -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Memory Limit (GB)</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span>1</span>
+                                <input type="range" min="1" max="16" value="4" style="flex: 1;" oninput="updateMemoryLimit(this.value)">
+                                <span>16</span>
+                                <span id="memory-display" style="color: var(--primary-accent); font-weight: 600; min-width: 35px;">4GB</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Garbage Collection -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleGarbageCollection(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Aggressive Garbage Collection</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Free memory more frequently</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Memory Monitoring -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleMemoryMonitoring(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Memory Monitoring</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Show memory usage in real-time</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Clear Cache Button -->
+                        <div style="padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <button class="btn btn-warning w-full" onclick="clearCache()">
+                                🗑️ Clear All Cache
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Privacy Settings -->
+        <div class="settings-category" id="privacy-settings" style="display: none;">
+            <div class="grid grid-2 mb-4">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 50%;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Privacy Controls</h3>
+                            <p class="card-description">Manage your privacy settings</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Data Collection -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleDataCollection(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Anonymous Analytics</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Help improve CARNAGE with usage data</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Crash Reports -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleCrashReports(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Crash Reports</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Send crash reports to help fix bugs</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Location Access -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleLocationAccess(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Location Access</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Allow location-based features</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Cookies -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Cookie Settings</label>
+                            <select style="width: 100%; padding: 0.75rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);" onchange="changeCookieSettings(this.value)">
+                                <option value="all">Accept All Cookies</option>
+                                <option value="essential">Essential Only</option>
+                                <option value="none">Block All Cookies</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Data Retention -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Data Retention (Days)</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span>7</span>
+                                <input type="range" min="7" max="365" value="30" style="flex: 1;" oninput="updateDataRetention(this.value)">
+                                <span>365</span>
+                                <span id="retention-display" style="color: var(--primary-accent); font-weight: 600; min-width: 50px;">30 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Settings -->
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 3px;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Security Settings</h3>
+                            <p class="card-description">Protect your account and data</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Auto-lock -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleAutoLock(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Auto-lock</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Lock after period of inactivity</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Session Timeout -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Session Timeout (Minutes)</label>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span>5</span>
+                                <input type="range" min="5" max="120" value="30" style="flex: 1;" oninput="updateSessionTimeout(this.value)">
+                                <span>120</span>
+                                <span id="timeout-display" style="color: var(--primary-accent); font-weight: 600; min-width: 50px;">30 min</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Two-Factor Authentication -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleTwoFactor(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Two-Factor Authentication</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Add extra security layer</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Password Change -->
+                        <div style="padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <button class="btn btn-primary w-full" onclick="changePassword()">
+                                🔑 Change Password
+                            </button>
+                        </div>
+                        
+                        <!-- Clear All Data -->
+                        <div>
+                            <button class="btn btn-danger w-full" onclick="clearAllData()">
+                                🗑️ Clear All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advanced Settings -->
+        <div class="settings-category" id="advanced-settings" style="display: none;">
+            <div class="grid grid-2 mb-4">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 3px;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Developer Options</h3>
+                            <p class="card-description">Advanced configuration</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1.5rem;">
+                        <!-- Debug Mode -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleDebugMode(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Debug Mode</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Show detailed error messages</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Console Logging -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleConsoleLogging(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Console Logging</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Enable detailed console output</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Experimental Features -->
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-accent);" onchange="toggleExperimentalFeatures(this.checked)">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">Experimental Features</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Enable beta features (may be unstable)</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- API Endpoint -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">API Endpoint</label>
+                            <input type="url" placeholder="https://api.carnage.dev" style="width: 100%; padding: 0.75rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);" oninput="updateApiEndpoint(this.value)">
+                        </div>
+                        
+                        <!-- Custom Scripts -->
+                        <div>
+                            <label style="display: block; margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">Custom JavaScript</label>
+                            <textarea placeholder="// Enter custom JavaScript code..." style="width: 100%; height: 120px; padding: 1rem; background: rgba(255, 107, 53, 0.05); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: monospace; resize: vertical;" oninput="updateCustomScript(this.value)"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Information -->
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <div style="width: 16px; height: 12px; border: 2px solid white; border-radius: 2px;"></div>
+                        </div>
+                        <div>
+                            <h3 class="card-title">System Information</h3>
+                            <p class="card-description">Application details</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1rem;">
+                        <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                            <span style="color: var(--text-secondary);">Version</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">1.0.0</span>
+                        </div>
+                        <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                            <span style="color: var(--text-secondary);">Build</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">2024.01.15</span>
+                        </div>
+                        <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                            <span style="color: var(--text-secondary);">Platform</span>
+                            <span style="color: var(--text-primary); font-weight: 600;" id="platform-info">Web</span>
+                        </div>
+                        <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                            <span style="color: var(--text-secondary);">User Agent</span>
+                            <span style="color: var(--text-primary); font-weight: 600; font-size: 0.8rem;" id="user-agent-info">Loading...</span>
+                        </div>
+                        
+                        <!-- Export/Import Settings -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <button class="btn btn-secondary" onclick="exportSettings()">
+                                📤 Export
+                            </button>
+                            <button class="btn btn-secondary" onclick="importSettings()">
+                                📥 Import
+                            </button>
+                        </div>
+                        
+                        <!-- Reset Settings -->
+                        <div>
+                            <button class="btn btn-danger w-full" onclick="resetAllSettings()">
+                                🔄 Reset All Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Save Button -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn btn-primary" onclick="saveAllSettings()" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                💾 Save All Settings
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize settings page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update platform info
+            document.getElementById('platform-info').textContent = navigator.platform;
+            document.getElementById('user-agent-info').textContent = navigator.userAgent.substring(0, 50) + '...';
+            
+            // Show appearance settings by default
+            showSettingsCategory('appearance');
+        });
+        
+        // Settings category management
+        function showSettingsCategory(category) {
+            // Hide all categories
+            document.querySelectorAll('.settings-category').forEach(cat => {
+                cat.style.display = 'none';
+            });
+            
+            // Remove pulse effect from all cards
+            document.querySelectorAll('.grid-4 .card').forEach(card => {
+                card.classList.remove('pulse');
+            });
+            
+            // Show selected category
+            document.getElementById(category + '-settings').style.display = 'block';
+            
+            // Add pulse effect to selected card
+            event.target.closest('.card').classList.add('pulse');
+        }
+        
+        // Theme functions
+        function selectTheme(theme) {
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.style.border = '2px solid transparent';
+            });
+            
+            document.querySelector(`[data-theme="${theme}"]`).style.border = '2px solid var(--primary-accent)';
+            
+            // Apply theme to parent window
+            if (window.parent && window.parent.carnageApp) {
+                window.parent.carnageApp.currentTheme = theme;
+                window.parent.carnageApp.applyTheme();
+            }
+            
+            showNotification(`Switched to ${theme} theme`, 'success');
+        }
+        
+        function selectAccentColor(color) {
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.style.border = '3px solid transparent';
+                option.style.boxShadow = 'none';
+            });
+            
+            const selectedOption = document.querySelector(`[data-color="${color}"]`);
+            selectedOption.style.border = '3px solid var(--primary-accent)';
+            selectedOption.style.boxShadow = '0 0 0 2px rgba(255, 107, 53, 0.3)';
+            
+            // Apply accent color to parent window
+            if (window.parent && window.parent.carnageApp) {
+                window.parent.carnageApp.currentAccent = color;
+                window.parent.carnageApp.applyTheme();
+            }
+            
+            showNotification(`Accent color changed to ${color}`, 'success');
+        }
+        
+        // Font size update
+        function updateFontSize(size) {
+            document.getElementById('font-size-display').textContent = size + 'px';
+            document.documentElement.style.fontSize = size + 'px';
+        }
+        
+        // Animation toggles
+        function toggleAnimations(enabled) {
+            if (enabled) {
+                document.documentElement.style.setProperty('--animation-duration', '0.3s');
+            } else {
+                document.documentElement.style.setProperty('--animation-duration', '0s');
+            }
+            showNotification(`Animations ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleTransitions(enabled) {
+            if (!enabled) {
+                document.documentElement.style.setProperty('--transition-duration', '0s');
+            } else {
+                document.documentElement.style.setProperty('--transition-duration', '0.3s');
+            }
+            showNotification(`Transitions ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleReducedMotion(enabled) {
+            if (enabled) {
+                document.documentElement.style.setProperty('--animation-duration', '0.1s');
+                document.documentElement.style.setProperty('--transition-duration', '0.1s');
+            }
+            showNotification(`Reduced motion ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        // Background functions
+        function changeBackgroundType(type) {
+            showNotification(`Background changed to ${type}`, 'info');
+        }
+        
+        function updateBackgroundOpacity(opacity) {
+            document.getElementById('opacity-display').textContent = opacity + '%';
+            document.documentElement.style.setProperty('--bg-opacity', opacity / 100);
+        }
+        
+        function updateBlurEffect(blur) {
+            document.getElementById('blur-display').textContent = blur + 'px';
+            document.documentElement.style.setProperty('--backdrop-blur', blur + 'px');
+        }
+        
+        function applyCustomCSS(css) {
+            let styleElement = document.getElementById('custom-css');
+            if (!styleElement) {
+                styleElement = document.createElement('style');
+                styleElement.id = 'custom-css';
+                document.head.appendChild(styleElement);
+            }
+            styleElement.textContent = css;
+        }
+        
+        // Performance functions
+        function toggleHardwareAcceleration(enabled) {
+            showNotification(`Hardware acceleration ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function togglePreloadResources(enabled) {
+            showNotification(`Resource preloading ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function updateCacheSize(size) {
+            document.getElementById('cache-display').textContent = size + 'MB';
+        }
+        
+        function toggleAutoCleanup(enabled) {
+            showNotification(`Auto cleanup ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function changePerformanceMode(mode) {
+            showNotification(`Performance mode set to ${mode}`, 'info');
+        }
+        
+        function updateMemoryLimit(limit) {
+            document.getElementById('memory-display').textContent = limit + 'GB';
+        }
+        
+        function toggleGarbageCollection(enabled) {
+            showNotification(`Aggressive garbage collection ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleMemoryMonitoring(enabled) {
+            showNotification(`Memory monitoring ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function clearCache() {
+            if (confirm('Are you sure you want to clear all cache? This may slow down the application temporarily.')) {
+                // Simulate cache clearing
+                showNotification('Cache cleared successfully!', 'success');
+                
+                // Clear localStorage and sessionStorage
+                try {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                } catch (e) {
+                    console.warn('Could not clear storage:', e);
+                }
+            }
+        }
+        
+        // Privacy functions
+        function toggleDataCollection(enabled) {
+            showNotification(`Anonymous analytics ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleCrashReports(enabled) {
+            showNotification(`Crash reports ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleLocationAccess(enabled) {
+            showNotification(`Location access ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function changeCookieSettings(setting) {
+            showNotification(`Cookie settings changed to: ${setting}`, 'info');
+        }
+        
+        function updateDataRetention(days) {
+            document.getElementById('retention-display').textContent = days + ' days';
+        }
+        
+        // Security functions
+        function toggleAutoLock(enabled) {
+            showNotification(`Auto-lock ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function updateSessionTimeout(minutes) {
+            document.getElementById('timeout-display').textContent = minutes + ' min';
+        }
+        
+        function toggleTwoFactor(enabled) {
+            if (enabled) {
+                showTwoFactorSetup();
+            } else {
+                showNotification('Two-factor authentication disabled', 'warning');
+            }
+        }
+        
+        function showTwoFactorSetup() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 400px;">
+                    <div class="modal-header">
+                        <h2 class="modal-title">🔐 Two-Factor Authentication</h2>
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                    </div>
+                    <div style="padding: 2rem; text-align: center;">
+                        <div style="margin-bottom: 2rem;">
+                            <div style="width: 150px; height: 150px; background: white; margin: 0 auto 1rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #000;">
+                                QR Code Placeholder
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Scan this QR code with your authenticator app</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary);">Enter verification code:</label>
+                            <input type="text" placeholder="000000" maxlength="6" style="width: 100%; padding: 1rem; text-align: center; font-size: 1.2rem; letter-spacing: 0.5rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">Cancel</button>
+                            <button class="btn btn-primary" onclick="enableTwoFactor()">Enable</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function enableTwoFactor() {
+            document.querySelector('.modal').remove();
+            showNotification('Two-factor authentication enabled!', 'success');
+        }
+        
+        function changePassword() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 400px;">
+                    <div class="modal-header">
+                        <h2 class="modal-title">🔑 Change Password</h2>
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary);">Current Password:</label>
+                                <input type="password" style="width: 100%; padding: 1rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary);">New Password:</label>
+                                <input type="password" style="width: 100%; padding: 1rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary);">Confirm Password:</label>
+                                <input type="password" style="width: 100%; padding: 1rem; background: rgba(255, 107, 53, 0.1); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">Cancel</button>
+                            <button class="btn btn-primary" onclick="updatePassword()">Update</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function updatePassword() {
+            document.querySelector('.modal').remove();
+            showNotification('Password updated successfully!', 'success');
+        }
+        
+        function clearAllData() {
+            if (confirm('⚠️ This will permanently delete ALL your data including settings, cache, and saved information. This action cannot be undone.\n\nAre you absolutely sure?')) {
+                if (confirm('Last chance! This will delete EVERYTHING. Continue?')) {
+                    // Clear all storage
+                    try {
+                        localStorage.clear();
+                        sessionStorage.clear();
+                        
+                        // Clear IndexedDB if available
+                        if ('indexedDB' in window) {
+                            indexedDB.deleteDatabase('carnage-db');
+                        }
+                        
+                        showNotification('All data cleared successfully!', 'success');
+                        
+                        // Reload page after delay
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
+                    } catch (e) {
+                        showNotification('Error clearing data: ' + e.message, 'error');
+                    }
+                }
+            }
+        }
+        
+        // Advanced functions
+        function toggleDebugMode(enabled) {
+            if (enabled) {
+                console.log('🐛 Debug mode enabled');
+                window.DEBUG = true;
+            } else {
+                window.DEBUG = false;
+            }
+            showNotification(`Debug mode ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleConsoleLogging(enabled) {
+            showNotification(`Console logging ${enabled ? 'enabled' : 'disabled'}`, 'info');
+        }
+        
+        function toggleExperimentalFeatures(enabled) {
+            showNotification(`Experimental features ${enabled ? 'enabled' : 'disabled'}`, enabled ? 'warning' : 'info');
+        }
+        
+        function updateApiEndpoint(endpoint) {
+            if (endpoint && !endpoint.startsWith('http')) {
+                showNotification('API endpoint must start with http:// or https://', 'error');
+                return;
+            }
+            console.log('API endpoint updated:', endpoint);
+        }
+        
+        function updateCustomScript(script) {
+            try {
+                // Validate JavaScript syntax
+                new Function(script);
+                console.log('Custom script updated');
+            } catch (e) {
+                console.warn('Invalid JavaScript syntax:', e.message);
+            }
+        }
+        
+        // Export/Import functions
+        function exportSettings() {
+            const settings = {
+                timestamp: new Date().toISOString(),
+                version: '1.0.0',
+                theme: document.querySelector('.theme-option[style*="var(--primary-accent)"]')?.dataset.theme || 'dark',
+                accentColor: document.querySelector('.color-option[style*="var(--primary-accent)"]')?.dataset.color || 'orange',
+                fontSize: document.getElementById('font-size-display').textContent,
+                // Add more settings as needed
+            };
+            
+            const dataStr = JSON.stringify(settings, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `carnage-settings-${Date.now()}.json`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showNotification('Settings exported successfully!', 'success');
+        }
+        
+        function importSettings() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const settings = JSON.parse(e.target.result);
+                            
+                            // Apply imported settings
+                            if (settings.theme) {
+                                selectTheme(settings.theme);
+                            }
+                            if (settings.accentColor) {
+                                selectAccentColor(settings.accentColor);
+                            }
+                            
+                            showNotification('Settings imported successfully!', 'success');
+                        } catch (error) {
+                            showNotification('Error importing settings: Invalid file format', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+        
+        function resetAllSettings() {
+            if (confirm('Are you sure you want to reset all settings to default values? This cannot be undone.')) {
+                // Reset to defaults
+                selectTheme('dark');
+                selectAccentColor('orange');
+                updateFontSize(16);
+                
+                // Reset all checkboxes and sliders to default values
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                document.querySelectorAll('input[type="range"]').forEach(slider => {
+                    slider.value = slider.getAttribute('value') || slider.min;
+                    // Trigger change event
+                    slider.dispatchEvent(new Event('input'));
+                });
+                
+                showNotification('All settings reset to defaults!', 'success');
+            }
+        }
+        
+        function saveAllSettings() {
+            // Simulate saving settings
+            const saveBtn = event.target;
+            const originalText = saveBtn.textContent;
+            
+            saveBtn.disabled = true;
+            saveBtn.textContent = '💾 Saving...';
+            
+            setTimeout(() => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+                showNotification('All settings saved successfully!', 'success');
+            }, 1500);
+        }
+        
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${getNotificationColor(type)};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                z-index: 10000;
+                font-weight: 500;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        function getNotificationColor(type) {
+            switch (type) {
+                case 'success': return '#10b981';
+                case 'error': return '#ef4444';
+                case 'warning': return '#f59e0b';
+                default: return '#3b82f6';
+            }
+        }
+        
+        // Modal styles
+        const modalStyles = document.createElement('style');
+        modalStyles.textContent = `
+            .modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                backdrop-filter: blur(5px);
+            }
+            
+            .modal-content {
+                background: var(--secondary-bg);
+                border: 1px solid var(--border-color);
+                border-radius: 15px;
+                max-width: 90vw;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                animation: modalAppear 0.3s ease-out;
+            }
+            
+            @keyframes modalAppear {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(-20px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+            
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .modal-title {
+                color: var(--text-primary);
+                margin: 0;
+                font-size: 1.25rem;
+            }
+            
+            .modal-close {
+                background: none;
+                border: none;
+                color: var(--text-secondary);
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+            }
+            
+            .modal-close:hover {
+                background: rgba(255, 107, 53, 0.1);
+                color: var(--primary-accent);
+            }
+        `;
+        document.head.appendChild(modalStyles);
+    </script>
+    <style>
+body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* For content that extends beyond viewport */
+.page-content {
+    min-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+    </style>
+    <ul class="nav-menu">
+                <li><a href="home.html" class="nav-link" data-page="home">
+                    <div class="nav-icon home-icon"></div>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="games.html" class="nav-link" data-page="games">
+                    <div class="nav-icon games-icon"></div>
+                    <span>Games</span>
+                </a></li>
+                <li><a href="music.html" class="nav-link" data-page="music">
+                    <div class="nav-icon music-icon"></div>
+                    <span>Music</span>
+                </a></li>
+                <li><a href="bookmarklets.html" class="nav-link" data-page="bookmarklets">
+                    <div class="nav-icon tools-icon"></div>
+                    <span>Bookmarklets</span>
+                </a></li>
+                <li><a href="system.html" class="nav-link" data-page="system">
+                    <div class="nav-icon system-icon"></div>
+                    <span>System</span>
+                </a></li>
+                <li><a href="settings.html" class="nav-link" data-page="settings">
+                    <div class="nav-icon settings-icon"></div>
+                    <span>Settings</span>
+                </a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="username">Admin</span>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Get current page from URL
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+    
+    // Update active nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Update breadcrumb
+    const breadcrumb = document.getElementById('current-page');
+    if (breadcrumb && window.app) {
+        breadcrumb.textContent = window.app.getPageTitle(currentPage);
+    }
+});
+</script>
+</body>
+</html>

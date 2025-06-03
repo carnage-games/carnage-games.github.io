@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Monitor - CARNAGE</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <div class="page-content">
+        <h1 class="page-title">SYSTEM MONITOR</h1>
+        <p class="page-subtitle">Real-time system diagnostics</p>
+        
+        <!-- System Overview Cards -->
+        <div class="grid grid-4 mb-4">
+            <div class="card pulse">
+                <div class="card-header">
+                    <div class="card-icon cpu-icon">
+                        <div style="width: 16px; height: 12px; border: 2px solid white; border-radius: 2px;"></div>
+                        <div style="width: 8px; height: 2px; background: white; margin-top: 2px; margin-left: 4px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">CPU</h3>
+                        <p class="card-description">Processor usage</p>
+                    </div>
+                </div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary-accent); margin-bottom: 0.5rem;">45%</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 45%;"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon memory-icon">
+                        <div style="width: 16px; height: 10px; border: 2px solid white; border-radius: 2px;"></div>
+                        <div style="width: 12px; height: 2px; background: white; margin-top: 2px; margin-left: 2px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Memory</h3>
+                        <p class="card-description">RAM usage</p>
+                    </div>
+                </div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--success); margin-bottom: 0.5rem;">67%</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 67%; background: linear-gradient(90deg, var(--success), #059669);"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon connection-icon">
+                        <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 50%;"></div>
+                        <div style="width: 8px; height: 8px; background: white; border-radius: 50%; margin-top: -12px; margin-left: 4px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Network</h3>
+                        <p class="card-description">Connection status</p>
+                    </div>
+                </div>
+                <div class="badge badge-success">ONLINE</div>
+                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">150 Mbps</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon battery-icon">
+                        <div style="width: 20px; height: 10px; border: 2px solid white; border-radius: 2px;"></div>
+                        <div style="width: 2px; height: 6px; background: white; margin-top: -8px; margin-left: 20px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Battery</h3>
+                        <p class="card-description">Power status</p>
+                    </div>
+                </div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--warning); margin-bottom: 0.5rem;">82%</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 82%; background: linear-gradient(90deg, var(--warning), #d97706);"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Real-time Charts -->
+        <div class="grid grid-2 mb-4">
+            <div class="card fade-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 3px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">CPU Usage History</h3>
+                        <p class="card-description">Last 60 seconds</p>
+                    </div>
+                </div>
+                
+                <div style="height: 200px; background: rgba(255, 107, 53, 0.05); border-radius: 12px; padding: 1rem; position: relative; overflow: hidden;">
+                    <div style="display: flex; align-items: end; justify-content: space-between; height: 100%; gap: 2px;">
+                        <div class="chart-bar" style="width: 4px; height: 30%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 45%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2.1s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 60%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 1.9s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 40%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2.2s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 55%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 1.8s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 70%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2.3s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 35%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2.0s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 50%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 1.7s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 65%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2.4s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 45%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 1.6s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 80%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 2.5s ease-in-out infinite;"></div>
+                        <div class="chart-bar" style="width: 4px; height: 25%; background: linear-gradient(to top, var(--primary-accent), var(--secondary-accent)); border-radius: 2px; animation: chart-update 1.5s ease-in-out infinite;"></div>
+                    </div>
+                    <div style="position: absolute; bottom: 10px; left: 10px; color: var(--text-muted); font-size: 0.8rem;">0%</div>
+                    <div style="position: absolute; top: 10px; left: 10px; color: var(--text-muted); font-size: 0.8rem;">100%</div>
+                </div>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 50%;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Memory Usage</h3>
+                        <p class="card-description">RAM allocation</p>
+                    </div>
+                </div>
+                
+                <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                    <div style="position: relative; width: 150px; height: 150px;">
+                        <svg width="150" height="150" style="transform: rotate(-90deg);">
+                            <circle cx="75" cy="75" r="60" fill="none" stroke="rgba(255, 107, 53, 0.2)" stroke-width="12"/>
+                            <circle cx="75" cy="75" r="60" fill="none" stroke="var(--success)" stroke-width="12" 
+                                    stroke-dasharray="251.2" stroke-dashoffset="83.9" stroke-linecap="round"/>
+                        </svg>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">67%</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary);">8.2GB / 12GB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Information -->
+        <div class="grid grid-2 mb-4">
+            <div class="card fade-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <div style="width: 16px; height: 12px; border: 2px solid white; border-radius: 2px;"></div>
+                        <div style="width: 8px; height: 2px; background: white; margin-top: 2px; margin-left: 4px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">System Information</h3>
+                        <p class="card-description">Hardware details</p>
+                    </div>
+                </div>
+                
+                <div class="info-grid" style="display: grid; gap: 1rem;">
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Operating System</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">Windows 11 Pro</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Processor</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">Intel Core i7-12700K</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Graphics</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">NVIDIA RTX 4070</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Total RAM</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">32 GB DDR4</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Storage</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">1TB NVMe SSD</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Uptime</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">2d 14h 32m</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 50%;"></div>
+                        <div style="width: 8px; height: 8px; background: white; border-radius: 50%; margin-top: -12px; margin-left: 4px;"></div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Network Information</h3>
+                        <p class="card-description">Connection details</p>
+                    </div>
+                </div>
+                
+                <div class="info-grid" style="display: grid; gap: 1rem;">
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Connection Type</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">Ethernet</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Download Speed</span>
+                        <span class="info-value" style="color: var(--success); font-weight: 600;">150.2 Mbps</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Upload Speed</span>
+                        <span class="info-value" style="color: var(--info); font-weight: 600;">45.8 Mbps</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">Ping</span>
+                        <span class="info-value" style="color: var(--warning); font-weight: 600;">12 ms</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">IP Address</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">192.168.1.100</span>
+                    </div>
+                    <div class="info-item" style="display: flex; justify-content: space-between; padding: 0.75rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                        <span class="info-label" style="color: var(--text-secondary);">DNS Server</span>
+                        <span class="info-value" style="color: var(--text-primary); font-weight: 600;">8.8.8.8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Process Monitor -->
+        <div class="card fade-in">
+            <div class="card-header">
+                <div class="card-icon">
+                    <div style="width: 16px; height: 16px; border: 2px solid white; border-radius: 3px;"></div>
+                    <div style="width: 8px; height: 2px; background: white; margin-top: -10px; margin-left: 4px;"></div>
+                    <div style="width: 8px; height: 2px; background: white; margin-top: 2px; margin-left: 4px;"></div>
+                </div>
+                <div>
+                    <h3 class="card-title">Running Processes</h3>
+                    <p class="card-description">Active system processes</p>
+                </div>
+                <button class="btn btn-secondary" onclick="refreshProcesses()" style="margin-left: auto;">
+                    🔄 Refresh
+                </button>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <th style="text-align: left; padding: 1rem; color: var(--text-secondary); font-weight: 600;">Process Name</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-secondary); font-weight: 600;">PID</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-secondary); font-weight: 600;">CPU %</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-secondary); font-weight: 600;">Memory</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-secondary); font-weight: 600;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="process-table">
+                        <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                            <td style="padding: 1rem; color: var(--text-primary);">Chrome.exe</td>
+                            <td style="padding: 1rem; color: var(--text-secondary);">1234</td>
+                            <td style="padding: 1rem; color: var(--danger);">15.2%</td>
+                            <td style="padding: 1rem; color: var(--warning);">512 MB</td>
+                            <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                            <td style="padding: 1rem; color: var(--text-primary);">Discord.exe</td>
+                            <td style="padding: 1rem; color: var(--text-secondary);">5678</td>
+                            <td style="padding: 1rem; color: var(--success);">3.8%</td>
+                            <td style="padding: 1rem; color: var(--info);">256 MB</td>
+                            <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                            <td style="padding: 1rem; color: var(--text-primary);">Steam.exe</td>
+                            <td style="padding: 1rem; color: var(--text-secondary);">9012</td>
+                            <td style="padding: 1rem; color: var(--warning);">8.5%</td>
+                            <td style="padding: 1rem; color: var(--danger);">1.2 GB</td>
+                            <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                            <td style="padding: 1rem; color: var(--text-primary);">System</td>
+                            <td style="padding: 1rem; color: var(--text-secondary);">4</td>
+                            <td style="padding: 1rem; color: var(--success);">0.1%</td>
+                            <td style="padding: 1rem; color: var(--success);">32 MB</td>
+                            <td style="padding: 1rem;"><span class="badge badge-info">System</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                            <td style="padding: 1rem; color: var(--text-primary);">Windows Explorer</td>
+                            <td style="padding: 1rem; color: var(--text-secondary);">3456</td>
+                            <td style="padding: 1rem; color: var(--success);">2.1%</td>
+                            <td style="padding: 1rem; color: var(--info);">128 MB</td>
+                            <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- System Actions -->
+        <div class="grid grid-3 mt-4">
+            <div class="card text-center">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔄</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 1rem;">System Restart</h3>
+                <button class="btn btn-warning w-full" onclick="systemAction('restart')">
+                    Restart System
+                </button>
+            </div>
+            
+            <div class="card text-center">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🧹</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 1rem;">Clean Temp Files</h3>
+                <button class="btn btn-info w-full" onclick="systemAction('clean')">
+                    Clean System
+                </button>
+            </div>
+            
+            <div class="card text-center">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                <h3 style="color: var(--primary-accent); margin-bottom: 1rem;">Full Diagnostic</h3>
+                <button class="btn btn-primary w-full" onclick="runDiagnostic()">
+                    Run Diagnostic
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes chart-update {
+            0%, 100% { height: 20%; }
+            50% { height: var(--target-height, 50%); }
+        }
+        
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+        
+        .badge-info {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+        
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+        
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+        
+        table {
+            background: rgba(255, 107, 53, 0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        tbody tr:hover {
+            background: rgba(255, 107, 53, 0.05);
+        }
+    </style>
+    
+    <script>
+        function refreshProcesses() {
+            const processTable = document.getElementById('process-table');
+            
+            // Add loading state
+            processTable.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div class="loading-spinner" style="margin: 0 auto 1rem;"></div>
+                        Refreshing processes...
+                    </td>
+                </tr>
+            `;
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                processTable.innerHTML = `
+                    <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                        <td style="padding: 1rem; color: var(--text-primary);">Chrome.exe</td>
+                        <td style="padding: 1rem; color: var(--text-secondary);">1234</td>
+                        <td style="padding: 1rem; color: var(--danger);">${(Math.random() * 20).toFixed(1)}%</td>
+                        <td style="padding: 1rem; color: var(--warning);">${(Math.random() * 1000 + 200).toFixed(0)} MB</td>
+                        <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                        <td style="padding: 1rem; color: var(--text-primary);">Discord.exe</td>
+                        <td style="padding: 1rem; color: var(--text-secondary);">5678</td>
+                        <td style="padding: 1rem; color: var(--success);">${(Math.random() * 10).toFixed(1)}%</td>
+                        <td style="padding: 1rem; color: var(--info);">${(Math.random() * 500 + 100).toFixed(0)} MB</td>
+                        <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                        <td style="padding: 1rem; color: var(--text-primary);">Steam.exe</td>
+                        <td style="padding: 1rem; color: var(--text-secondary);">9012</td>
+                        <td style="padding: 1rem; color: var(--warning);">${(Math.random() * 15).toFixed(1)}%</td>
+                        <td style="padding: 1rem; color: var(--danger);">${(Math.random() * 2000 + 500).toFixed(0)} MB</td>
+                        <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                        <td style="padding: 1rem; color: var(--text-primary);">System</td>
+                        <td style="padding: 1rem; color: var(--text-secondary);">4</td>
+                        <td style="padding: 1rem; color: var(--success);">0.1%</td>
+                        <td style="padding: 1rem; color: var(--success);">32 MB</td>
+                        <td style="padding: 1rem;"><span class="badge badge-info">System</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255, 107, 53, 0.1);">
+                        <td style="padding: 1rem; color: var(--text-primary);">Windows Explorer</td>
+                        <td style="padding: 1rem; color: var(--text-secondary);">3456</td>
+                        <td style="padding: 1rem; color: var(--success);">${(Math.random() * 5).toFixed(1)}%</td>
+                        <td style="padding: 1rem; color: var(--info);">${(Math.random() * 200 + 50).toFixed(0)} MB</td>
+                        <td style="padding: 1rem;"><span class="badge badge-success">Running</span></td>
+                    </tr>
+                `;
+            }, 1500);
+        }
+        
+        function systemAction(action) {
+            let message = '';
+            let type = 'info';
+            
+            switch(action) {
+                case 'restart':
+                    if (confirm('Are you sure you want to restart the system?')) {
+                        message = 'System restart initiated...';
+                        type = 'warning';
+                    } else {
+                        return;
+                    }
+                    break;
+                case 'clean':
+                    message = 'Cleaning temporary files...';
+                    type = 'info';
+                    break;
+                default:
+                    message = 'Action completed';
+            }
+            
+            showNotification(message, type);
+        }
+        
+        function runDiagnostic() {
+            // Create diagnostic modal
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content diagnostic-modal" style="max-width: 600px;">
+                    <div class="modal-header">
+                        <h2 class="modal-title">🔍 System Diagnostic</h2>
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <div class="diagnostic-progress">
+                            <div style="margin-bottom: 2rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span>Running diagnostic tests...</span>
+                                    <span id="diagnostic-percent">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="diagnostic-progress" style="width: 0%; transition: width 0.3s ease;"></div>
+                                </div>
+                            </div>
+                            
+                            <div id="diagnostic-steps" style="display: grid; gap: 1rem;">
+                                <div class="diagnostic-step" data-step="cpu">
+                                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                                        <div class="step-icon">⏳</div>
+                                        <span>CPU Performance Test</span>
+                                        <div style="margin-left: auto;" class="step-status">Pending</div>
+                                    </div>
+                                </div>
+                                <div class="diagnostic-step" data-step="memory">
+                                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                                        <div class="step-icon">⏳</div>
+                                        <span>Memory Test</span>
+                                        <div style="margin-left: auto;" class="step-status">Pending</div>
+                                    </div>
+                                </div>
+                                <div class="diagnostic-step" data-step="disk">
+                                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                                        <div class="step-icon">⏳</div>
+                                        <span>Disk Health Check</span>
+                                        <div style="margin-left: auto;" class="step-status">Pending</div>
+                                    </div>
+                                </div>
+                                <div class="diagnostic-step" data-step="network">
+                                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 107, 53, 0.05); border-radius: 8px;">
+                                        <div class="step-icon">⏳</div>
+                                        <span>Network Connectivity</span>
+                                        <div style="margin-left: auto;" class="step-status">Pending</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Start diagnostic simulation
+            startDiagnosticSimulation();
+        }
+        
+        function startDiagnosticSimulation() {
+            const steps = ['cpu', 'memory', 'disk', 'network'];
+            let currentStep = 0;
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += 5;
+                document.getElementById('diagnostic-progress').style.width = progress + '%';
+                document.getElementById('diagnostic-percent').textContent = progress + '%';
+                
+                // Update current step
+                if (progress > currentStep * 25 && currentStep < steps.length) {
+                    const stepElement = document.querySelector(`[data-step="${steps[currentStep]}"]`);
+                    if (stepElement) {
+                        const icon = stepElement.querySelector('.step-icon');
+                        const status = stepElement.querySelector('.step-status');
+                        
+                        if (progress <= (currentStep + 1) * 25) {
+                            icon.textContent = '🔄';
+                            status.textContent = 'Running...';
+                            status.style.color = 'var(--warning)';
+                        }
+                    }
+                }
+                
+                // Complete current step
+                if (progress >= (currentStep + 1) * 25 && currentStep < steps.length) {
+                    const stepElement = document.querySelector(`[data-step="${steps[currentStep]}"]`);
+                    if (stepElement) {
+                        const icon = stepElement.querySelector('.step-icon');
+                        const status = stepElement.querySelector('.step-status');
+                        
+                        icon.textContent = '✅';
+                        status.textContent = 'Passed';
+                        status.style.color = 'var(--success)';
+                    }
+                    currentStep++;
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Show completion message
+                    setTimeout(() => {
+                        const modal = document.querySelector('.diagnostic-modal');
+                        if (modal) {
+                            modal.innerHTML += `
+                                <div style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); margin-top: 2rem;">
+                                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                                    <h3 style="color: var(--success); margin-bottom: 1rem;">Diagnostic Complete</h3>
+                                    <p style="color: var(--text-secondary);">All systems are running optimally</p>
+                                </div>
+                            `;
+                        }
+                    }, 1000);
+                }
+            }, 200);
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${getNotificationColor(type)};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                z-index: 10000;
+                font-weight: 500;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        function getNotificationColor(type) {
+            switch (type) {
+                case 'success': return '#10b981';
+                case 'error': return '#ef4444';
+                case 'warning': return '#f59e0b';
+                default: return '#3b82f6';
+            }
+        }
+        
+        // Auto-refresh system stats
+        setInterval(() => {
+            // Update CPU usage
+            const cpuCard = document.querySelector('.pulse');
+            const cpuValue = Math.floor(Math.random() * 30) + 30; // 30-60%
+            cpuCard.querySelector('div[style*="font-size: 2rem"]').textContent = cpuValue + '%';
+            cpuCard.querySelector('.progress-fill').style.width = cpuValue + '%';
+            
+            // Update chart bars
+            const chartBars = document.querySelectorAll('.chart-bar');
+            chartBars.forEach(bar => {
+                const newHeight = Math.floor(Math.random() * 80) + 20; // 20-100%
+                bar.style.setProperty('--target-height', newHeight + '%');
+            });
+        }, 3000);
+    </script>
+    <style>
+body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* For content that extends beyond viewport */
+.page-content {
+    min-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+    </style>
+    <ul class="nav-menu">
+                <li><a href="home.html" class="nav-link" data-page="home">
+                    <div class="nav-icon home-icon"></div>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="games.html" class="nav-link" data-page="games">
+                    <div class="nav-icon games-icon"></div>
+                    <span>Games</span>
+                </a></li>
+                <li><a href="music.html" class="nav-link" data-page="music">
+                    <div class="nav-icon music-icon"></div>
+                    <span>Music</span>
+                </a></li>
+                <li><a href="bookmarklets.html" class="nav-link" data-page="bookmarklets">
+                    <div class="nav-icon tools-icon"></div>
+                    <span>Bookmarklets</span>
+                </a></li>
+                <li><a href="system.html" class="nav-link" data-page="system">
+                    <div class="nav-icon system-icon"></div>
+                    <span>System</span>
+                </a></li>
+                <li><a href="settings.html" class="nav-link" data-page="settings">
+                    <div class="nav-icon settings-icon"></div>
+                    <span>Settings</span>
+                </a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="username">Admin</span>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Get current page from URL
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+    
+    // Update active nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Update breadcrumb
+    const breadcrumb = document.getElementById('current-page');
+    if (breadcrumb && window.app) {
+        breadcrumb.textContent = window.app.getPageTitle(currentPage);
+    }
+});
+</script>
+</body>
+</html>

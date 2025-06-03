@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">CARNAGE</title>
+    <link rel="icon" id="favicon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23ff6b35'/></svg>">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-container" class="login-wrapper">
+        <div class="login-background">
+            <div class="animated-bg"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        
+        <div class="login-box">
+            <div class="login-header">
+                <h1 class="brand-logo">CARNAGE</h1>
+                <p class="brand-subtitle">SECURE ACCESS REQUIRED</p>
+            </div>
+            
+            <div class="login-form">
+                <div class="input-group">
+                    <input type="password" id="password-input" placeholder="Enter Access Code" autocomplete="off">
+                    <div class="input-line"></div>
+                </div>
+                <button class="login-btn" onclick="authenticate()">
+                    <span>ACCESS SYSTEM</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <div id="error-message" class="error-text"></div>
+            </div>
+            
+            <div class="login-footer">
+                <div class="security-indicator">
+                    <div class="indicator-dot"></div>
+                    <span>SECURE CONNECTION</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="app-container hidden">
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="nav-logo">CARNAGE</h2>
+                <div class="nav-subtitle">Gaming Portal</div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="pages/home.html" class="nav-link active" data-page="home">
+                    <div class="nav-icon home-icon"></div>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="pages/games.html" class="nav-link" data-page="games">
+                    <div class="nav-icon games-icon"></div>
+                    <span>Games</span>
+                </a></li>
+                <li><a href="pages/music.html" class="nav-link" data-page="music">
+                    <div class="nav-icon music-icon"></div>
+                    <span>Music</span>
+                </a></li>
+                <li><a href="pages/bookmarklets.html" class="nav-link" data-page="bookmarklets">
+                    <div class="nav-icon tools-icon"></div>
+                    <span>Bookmarklets</span>
+                </a></li>
+                <li><a href="pages/system.html" class="nav-link" data-page="system">
+                    <div class="nav-icon system-icon"></div>
+                    <span>System</span>
+                </a></li>
+                <li><a href="pages/settings.html" class="nav-link" data-page="settings">
+                    <div class="nav-icon settings-icon"></div>
+                    <span>Settings</span>
+                </a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="username">Admin</span>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="breadcrumb">
+                    <span id="current-page">Dashboard</span>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn" onclick="toggleFullscreen()">
+                        <div class="fullscreen-icon"></div>
+                    </button>
+                    <button class="action-btn" onclick="logout()">
+                        <div class="logout-icon"></div>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <iframe id="content-frame" src="pages/home.html" frameborder="0"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
